@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function call() {
+            var url = "{{SERVER_URL}}/call";
+    
+            // Make an AJAX request to the server
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function(response) {
+                    displayResult(response);
+                },
+                error: function(request,status,error) {
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    displayError("조교가 응답이 없습니다.");
+                }
+            });
+        }
+    
+        function displayResult(result) {
+            var resultContainer = document.getElementById("resultContainer");
+            if (result.status == 'ok') {
+                resultContainer.innerHTML = "조교 호출 완료. (" + result.timestamp + ")";
+            }
+            else {
+                resultContainer.innerHTML = "조교가 응답이 없습니다.";
+            }
+        }
+    
+        function displayError(errorMessage) {
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = errorMessage;
+        }
+    </script>
+    
+    <button type="button" onclick="call()">조교 호출</button>
+
+    <div id="resultContainer"></div>
+</body>
+</html>

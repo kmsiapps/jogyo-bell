@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>조교 호출 시스템</h1>
+    <div id="log"></div>
+    <script>
+      var es = new EventSource('{{SERVER_URL}}/stream');
+
+      es.onmessage = function (event) {
+        var log = document.getElementById("log");
+        log.innerHTML += event.data + "<br>"
+
+        var mp3_url = 'https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3';
+        (new Audio(mp3_url)).play()
+
+        setTimeout(function() {
+          document.body.style.backgroundColor = "red";
+        }, 0);
+        setTimeout(function() {
+          document.body.style.backgroundColor = "white";
+        }, 100);
+      }
+    </script>
+</body>
+</html>
