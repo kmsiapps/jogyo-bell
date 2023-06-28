@@ -8,7 +8,7 @@
 
       es.onmessage = function (event) {
         var log = document.getElementById("log");
-        log.innerHTML += event.data + "<br>"
+        log.innerHTML = event.data + "<br>" + log.innerHTML
 
         var mp3_url = 'https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3';
         (new Audio(mp3_url)).play()

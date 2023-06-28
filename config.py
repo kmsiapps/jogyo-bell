@@ -1,2 +1,2 @@
-SERVER_URL = 'http://127.0.0.1:5000'
+SERVER_URL = 'http://1.233.219.33:8080'
 # do not include / at the end
